@@ -1,9 +1,6 @@
 {
   "name": "leb",
-  "scripts": {
-    "build": "tailwindcss -i ./tailwind.css -o ./output.css --minify",
-    "dev": "tailwindcss -i ./tailwind.css -o ./output.css --watch"
-  },
+ 
   "devDependencies": {
     "tailwindcss": "^3.4.1"
   }
