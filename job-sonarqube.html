@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analyse Statique du Code</title>
+  <link href="output.css" rel="stylesheet" />
+  <style>
+    :root {
+      --ocp: #009639;
+      --ocp-dark: #007d2a;
+    }
+    .code-block {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      font-family: Menlo, monospace;
+      font-size: 0.875rem;
+      overflow-x: auto;
+    }
+    hr {
+      border: none;
+      border-top: 2px solid #e4e4e7;
+      margin: 4rem 0;
+    }
+        footer{ text-align:center; font-size:.85rem; padding:2rem 0; color:#666;}
+
+  </style>
+</head>
+
+<body class="bg-zinc-100 text-zinc-800 leading-relaxed">
+  <header class="text-center py-10">
+    <h1 class="text-3xl font-bold">Job <span class="text-[color:var(--ocp)]">SonarQube</span> – Analyse Statique du Code</h1>
+    <p class="text-zinc-600 mt-2">Analyse approfondie du code source à la recherche de vulnérabilités, bugs et mauvaises pratiques</p>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-6 pb-24">
+    <!-- Introduction -->
+    <section>
+      <h2 class="text-2xl font-semibold mt-10 mb-6 text-[color:var(--ocp)]">1. Qu'est-ce que SonarQube ?</h2>
+      <p>SonarQube est une plateforme d’analyse statique de code open source qui inspecte la qualité du code source pour détecter automatiquement :</p>
+      <ul class="list-disc list-inside mt-3">
+        <li>les vulnérabilités de sécurité,</li>
+        <li>les bugs,</li>
+        <li>le code dupliqué,</li>
+        <li>les violations de conventions (linting),</li>
+        <li>la dette technique.</li>
+      </ul>
+      <p class="mt-4">Il supporte plusieurs langages (JavaScript, Python, Java...) et peut être intégré dans le pipeline CI/CD pour alerter automatiquement les développeurs.</p>
+      <a class="block text-sm mt-2 text-blue-600 hover:underline" href="https://docs.sonarsource.com/" target="_blank">→ Documentation officielle SonarSource</a>
+    </section>
+<hr>
+    <!-- Concepts clés -->
+    <section class="mt-16">
+  <h2 class="text-2xl font-semibold mb-8 text-[color:var(--ocp)]">
+    2. Concepts clés analysés par SonarQube
+  </h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8"> 
+  <!-- Code Smells -->
+  <div class="mb-12">
+    <img src="assets/images/sonarqube-code-smell.png" alt="Illustration Code Smells" class="w-full max-w-2xl mx-auto mb-4">
+    <p>Les odeurs de code sont des mauvaises pratiques de programmation qui compliquent la lecture ou la maintenance du code, comme des méthodes trop longues, des noms peu explicites ou du code mort. Elles n’entraînent pas forcément des bugs mais augmentent la dette technique.</p>
+  </div>
+
+  <!-- Vulnérabilités -->
+  <div class="mb-12">
+    <img src="assets/images/sonarqube-vulnerabilite.png" alt="Illustration Vulnérabilités" class="w-full max-w-2xl mx-auto mb-4">
+    <p>SonarQube identifie les failles de sécurité dans le code, comme les injections de commande, les données non filtrées, ou les mots de passe en dur. Ces vulnérabilités sont classées par sévérité (blocante, critique, etc.) et doivent être corrigées en priorité.</p>
+  </div>
+
+  <!-- Bugs -->
+  <div class="mb-12">
+    <img src="assets/images/sonarqube-bug.png" alt="Illustration Bugs" class=" w-full max-w-2xl mx-auto mb-4">
+    <p>SonarQube détecte les comportements anormaux du code susceptibles de générer des erreurs à l’exécution. Par exemple, une condition toujours vraie, une mauvaise gestion des exceptions ou l’accès à une variable non initialisée.</p>
+  </div>
+
+  <!-- Duplication -->
+  <div class="mb-12">
+    <img src="assets/images/sonarqube-duplication.png" alt="Illustration Duplication de code" class="w-full max-w-2xl mx-auto mb-4">
+    <p>SonarQube signale les blocs de code dupliqués dans plusieurs fichiers ou fonctions. Cela complique la maintenaxlnce et augmente le risque d’erreurs lors des mises à jour. Il est conseillé de factoriser ces blocs dans des fonctions réutilisables.</p>
+  </div>
+
+  </div>
+</section>
+<hr>
+
+
+    <!-- Capture illustrative globale -->
+
+    <!-- Vulnérabilités détectées -->
+    <section>
+      <h2 class="text-2xl font-semibold mt-16 mb-6 text-[color:var(--ocp)]">3. Exemples de vulnérabilités détectées</h2>
+
+        <div>
+          <h2 class="text-lg font-semibold mb-2 mt-10"> Authentification faible</h2>
+          <p>SonarQube détecte les mots de passe codés en dur ou mal stockés dans des fichiers JS ou de config.</p>
+          <img src="assets/images/sonar-auth.png" class="mt-3 rounded border">
+        </div>
+        <div>
+          <h2 class="text-lg font-semibold mb-2 mt-10"> Code Injection (RCE)</h2>
+          <p>Identification de fonctions dynamiques sensibles telles que <code>eval()</code> ou <code>Function()</code>.</p>
+          <img src="assets/images/sonar-codeinj.png" class="mt-3 rounded border">
+        </div>
+        <div>
+          <h2 class="text-lg font-semibold mb-2 mt-10"> Regex DoS</h2>
+          <p>Détection des regex vulnérables au backtracking pouvant causer des dénis de service (ReDoS).</p>
+          <img src="assets/images/sonar-dos.png" class="mt-3 rounded border">
+        </div>
+        <div>
+          <h2 class="text-lg font-semibold mb-2 mt-10"> Cryptographie faible</h2>
+          <p>Usage de générateurs pseudo-aléatoires ou fonctions de hashage faibles (ex: MD5, Math.random).</p>
+          <img src="assets/images/sonar-crypto.png" class="mt-3 rounded border">
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <div class="flex justify-between flex-wrap gap-4 mt-20">
+      <a href="job-scan-trivy.html"
+         class="px-4 py-2 rounded bg-zinc-200 text-zinc-700 hover:bg-zinc-300 transition">
+        ← Étape précédente : Scan Trivy
+      </a>
+
+      <a href="perspective.html"
+         class="px-4 py-2 rounded text-white"
+         style="background:var(--ocp);"
+         onmouseover="this.style.background='var(--ocp-dark)'"
+         onmouseout="this.style.background='var(--ocp)'">
+        perspective
+      </a>
+    </div>
+  </main>
+
+   <footer>
+    © <a href ="https://www.linkedin.com/in/rachid-ait-lmaati-540756286/" class="underline font-semibold" target="_blank" rel="noopener">AIT LMAATI Rachid</a> 2025 — Projet DevSecOps • OCP
+  </footer>
+</body>
+</html>

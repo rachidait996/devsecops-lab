@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Présentation du pipeline DevSecOps</title>
+  <link href="output.css" rel="stylesheet" />
+  <style>
+    :root { --ocp: #009639; --ocp-dark: #007d2a; }
+    .code-block {
+      background: #e0e0e0;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      font-family: Menlo, monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+    }
+     hr {
+      border: none;
+      border-top: 2px solid #e4e4e7;
+      margin: 4rem 0;
+    }
+    li:not(:last-child) {
+      margin-bottom: 0.9rem;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      padding: 2rem 0;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body class="bg-zinc-100 text-zinc-800 leading-relaxed">
+  <header class="text-center py-8">
+    <h1 class="text-3xl font-semibold">Comprendre le pipeline DevSecOps</h1>
+    <p class="text-zinc-600">Structure, étapes et rôle de chaque outil</p>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-6 pb-24">
+
+    <!-- Introduction -->
+    <section>
+      <h2 class="text-2xl font-bold mb-10 mt-10 text-[color:var(--ocp)]">Pourquoi un pipeline DevSecOps ?</h2>
+      <p>
+        Le pipeline CI/CD est le coeur de l'automatisation dans un projet DevSecOps. Il permet d'assurer
+        une intégration continue, tout en intégrant des contrôles de sécurité à chaque étape : compilation,
+        analyse de code, scan de vulnérabilités, tests dynamiques... Le but est d'identifier les problèmes
+        de sécurité ou de qualité <strong>dès le moment où le code est poussé</strong>.
+      </p>
+    </section>
+
+    <hr />
+
+    <!-- Tableau pipeline -->
+    <section>
+      <h2 class="text-2xl font-bold mb-10 mt-10 text-[color:var(--ocp)]">Vue d'ensemble du pipeline</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full border text-sm text-left">
+          <thead class="bg-zinc-200">
+            <tr>
+              <th class="p-3">Étape</th>
+              <th class="p-3">Outils</th>
+              <th class="p-3">Objectif</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-t">
+              <td class="p-3 font-semibold">build</td>
+              <td class="p-3">Docker</td>
+              <td class="p-3">Créer une image de l'application et l'envoyer dans Harbor (registre privé)</td>
+            </tr>
+            <tr class="border-t">
+              <td class="p-3 font-semibold">scan</td>
+              <td class="p-3">Trivy, osv-scanner, GitLeaks</td>
+              <td class="p-3">Détecter les vulnérabilités, dépendances non sûres et secrets exposés</td>
+            </tr>
+            <tr class="border-t">
+              <td class="p-3 font-semibold">quality</td>
+              <td class="p-3">SonarQube</td>
+              <td class="p-3">Analyser la qualité du code source (bugs, duplications, conventions, etc.)</td>
+            </tr>
+            <tr class="border-t">
+              <td class="p-3 font-semibold">zap</td>
+              <td class="p-3">OWASP ZAP (optionnel)</td>
+              <td class="p-3">Simuler des attaques web pour détecter des failles dynamiques comme XSS, SQLi</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- Schéma textuel -->
+    <section>
+      
+      <h2 class="text-2xl font-bold mb-8 mt-10 text-[color:var(--ocp)]">Schéma du pipeline</h2>
+      <p class="text-base text-zinc-700 leading-relaxed mb-10">
+  Ce schéma représente le pipeline DevSecOps intégré : un push GitLab déclenche le <strong>build</strong> de l’image Docker, son <strong>push dans Harbor</strong>, puis une <strong>analyse du code source avec SonarQube</strong>. Chaque étape automatise le contrôle qualité et sécurité dès le développement.
+</p>
+
+      <img src="assets/images/pipelineshema.png" alt="le schemas de la pipeline " class="rounded shadow border border-zinc-200 w-full h-80" />
+      <p class="mt-6 text-sm text-zinc-600">
+        Chaque étape est exécutée dans un conteneur Docker isolé, lancé automatiquement par GitLab Runner.
+      </p>
+    </section>
+
+
+    <!-- Lien vers page suivante -->
+    <div class="flex justify-between flex-wrap gap-4 mt-14">
+      <a href="installation-vm.html"
+         class="px-4 py-2 rounded bg-zinc-200 text-zinc-700 hover:bg-zinc-300 transition">
+        ← Retour
+      </a>
+
+      <a href="job-build.html"
+         class="px-4 py-2 rounded text-white"
+         style="background:var(--ocp);"
+         onmouseover="this.style.background='var(--ocp-dark)'"
+         onmouseout="this.style.background='var(--ocp)'">
+        Voir la phase Build 
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    © <a href="https://www.linkedin.com/in/rachid-ait-lmaati-540756286/" class="underline font-semibold" target="_blank" rel="noopener">AIT LMAATI Rachid</a> 2025 — Projet DevSecOps • OCP
+  </footer>
+</body>
+</html>

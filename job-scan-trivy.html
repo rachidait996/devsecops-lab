@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analyse de vulnérabilités</title>
+  <link href="output.css" rel="stylesheet" />
+  <style>
+    :root {
+      --ocp: #009639;
+      --ocp-dark: #007d2a;
+    }
+     hr {
+      border: none;
+      border-top: 2px solid #e4e4e7;
+      margin: 4rem 0;
+    }
+    footer{ text-align:center; font-size:.85rem; padding:2rem 0; color:#666;}
+
+  </style>
+</head>
+<body class="bg-zinc-100 text-zinc-800 leading-relaxed">
+  <header class="text-center py-10">
+    <h1 class="text-3xl font-bold">Job <span class="text-[color:var(--ocp)]">Trivy</span> – Scan de vulnérabilités</h1>
+    <p class="text-zinc-600 mt-2">Exploration approfondie des failles de sécurité dans les images Docker</p>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-6 pb-24">
+
+ <section class="mt-12 mb-6">
+  <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+    <div class="flex-1">
+      <h2 class="text-2xl font-semibold text-[color:var(--ocp)]">1. Trivy : un scanner open source complet</h2>
+      <p class="mt-4">
+        Trivy est un outil de sécurité open source qui analyse les images Docker, les dépendances d'applications, les fichiers IaC (Infrastructure as Code), et plus encore.
+        Il référence des bases de données comme <em>Debian Security Tracker</em>, <em>Red Hat CVE</em>, ou <em>NVD</em> pour identifier les CVE présentes.
+      </p>
+    </div>
+    <div class="w-24 md:w-28 shrink-0">
+      <img src="assets/images/logo-trivy.png" alt="Logo Trivy" class="w-full h-auto rounded-md shadow" />
+    </div>
+  </div>
+</section>
+
+<hr>
+   <section class="mt-12 mb-6">
+  <!-- Illustration -->
+  <h2 class="text-2xl font-semibold mb-6 text-[color:var(--ocp)]">2. Types de vulnérabilités détectées</h2>
+  <div class="mb-8">
+    <img src="assets/images/vulns.png" alt="Illustration des types de vulnérabilités détectées par Trivy"
+         class="w-full max-w-4xl mx-auto rounded-lg shadow-md border border-zinc-300" />
+  </div>
+
+
+  <!-- Contenu -->
+  <ul class="list-disc list-inside text-base">
+    <li><strong>Packages systèmes :</strong> vulnérabilités dans les bibliothèques C (ex: <code>glibc</code>, <code>openssl</code>)</li>
+    <li><strong>Dépendances applicatives :</strong> failles dans les fichiers <code>package.json</code>, <code>requirements.txt</code>, etc.</li>
+    <li><strong>Secrets exposés :</strong> fichiers contenant des jetons ou mots de passe codés en dur</li>
+    <li><strong>Fichiers IaC (Terraform, Dockerfile, etc.) :</strong> erreurs de configuration pouvant mener à une compromission</li>
+  </ul>
+</section>
+
+<hr>
+    <section>
+      <h2 class="text-2xl font-semibold mt-12 mb-6 text-[color:var(--ocp)]">3. Classement des CVEs</h2>
+      <p>Trivy classe les CVE selon leur <strong>niveau de gravité</strong> (Low, Medium, High, Critical) en se basant sur le score CVSS. Cela permet aux équipes de prioriser les corrections.</p>
+      <div class="mt-4">
+        <img src="assets/images/cve.png" alt="Niveaux de CVE" class="rounded shadow border border-zinc-300">
+      </div>
+    </section>
+<hr>
+   <!-- 1. Vulnérabilités système -->
+    <section class="mb-20">
+      <h2 class="text-2xl font-semibold mb-6 text-[color:var(--ocp)]">Vulnérabilités système (OS Packages)</h2>
+      <img src="assets/images/vuln-os.png" alt="Exemples de vulnérabilités système" class="category-img mb-6">
+      <p>Ces failles affectent les bibliothèques système comme <code>libssl</code> ou <code>zlib</code>. Elles représentent une surface d'attaque critique car elles sont à la base de tout l'environnement.</p>
+      <ul class="list-disc list-inside mt-4">
+        <li><strong>CVE-2022-4450</strong> sur <code>libssl1.1</code> – vulnérabilité de chiffrement.</li>
+        <li><strong>CVE-2023-0286</strong> sur <code>libcrypto1.1</code> – type confusion, fuite mémoire.</li>
+      </ul>
+    </section>
+
+    <hr>
+
+    <!-- 2. Vulnérabilités dépendances applicatives -->
+    <section class="mb-20">
+      <h2 class="text-2xl font-semibold mb-6 text-[color:var(--ocp)]"> Failles dans les dépendances applicatives</h2>
+      <img src="assets/images/vuln-app-deps.png" alt="Exemples vulnérabilités dépendances applicatives" class="category-img mb-6">
+      <p>Ces failles affectent les bibliothèques déclarées dans <code>package.json</code>, <code>requirements.txt</code>, etc. Souvent sous-estimées, elles peuvent permettre une exécution de code ou une élévation de privilège.</p>
+      <ul class="list-disc list-inside mt-4">
+        <li><strong>CVE-2020-7788</strong> sur <code>ini</code> – Pollution de prototype.</li>
+        <li><strong>CVE-2020-7610</strong> sur <code>bson</code> – désérialisation non sécurisée.</li>
+        <li><strong>CVE-2021-23358</strong> sur <code>underscore</code> – injection de code.</li>
+      </ul>
+    </section>
+ <!-- Navigation -->
+    <div class="flex justify-between flex-wrap gap-4 mt-16">
+      <a href="job-build.html"
+         class="px-4 py-2 rounded bg-zinc-200 text-zinc-700 hover:bg-zinc-300 transition">
+        ← Étape précédente : Build
+      </a>
+
+      <a href="job-sonarqube.html"
+         class="px-4 py-2 rounded text-white"
+         style="background:var(--ocp);"
+         onmouseover="this.style.background='var(--ocp-dark)'"
+         onmouseout="this.style.background='var(--ocp)'">
+        Étape suivante : Analyse SonarQube →
+      </a>
+    </div>
+
+  </main>
+
+   <footer>
+    © <a href ="https://www.linkedin.com/in/rachid-ait-lmaati-540756286/" class="underline font-semibold" target="_blank" rel="noopener">AIT LMAATI Rachid</a> 2025 — Projet DevSecOps • OCP
+  </footer>
+
+
+  
+ 
+
+
+

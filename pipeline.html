@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exécuter le pipeline</title>
+  <link href="output.css" rel="stylesheet" />
+  <style>
+    :root{ --ocp:#009639; --ocp-dark:#007d2a; }
+    .code-block{
+      background:#e0e0e0;
+      border:1px solid #e2e8f0;
+      border-radius:8px;
+      padding:1rem 1.2rem;
+      font-family:Menlo,monospace;
+      font-size:.9rem;
+      overflow-x:auto;
+    }
+ hr {
+      border: none;
+      border-top: 2px solid #e4e4e7;
+      margin: 4rem 0;
+    }    li:not(:last-child){ margin-bottom:.9rem; }
+    footer{ text-align:center; font-size:.85rem; padding:2rem 0; color:#666;}
+  </style>
+</head>
+
+<body class="bg-zinc-100 text-zinc-800 leading-relaxed">
+  <header class="text-center py-8">
+    <h1 class="text-3xl font-semibold">Lancer le pipeline DevSecOps</h1>
+    <p class="text-zinc-600">Sur la VM préconfigurée</p>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-6 pb-24">
+
+    <!-- Étape 1 -->
+    <section>
+      <h2 class="text-2xl font-bold mb-10 mt-10 text-[color:var(--ocp)]">1 · Accéder à GitLab</h2>
+      <p>Ouvrez Firefox (préinstallé dans la VM) et accédez à :</p>
+      <div class="code-block">http://localhost</div>
+      <p class="mt-4">Identifiants de connexion :</p>
+      <div class="code-block">
+        Nom d'utilisateur : <strong>ocp</strong><br>
+        Mot de passe : <strong>devsecops</strong>
+      </div>
+      <p class="text-sm text-zinc-600 mt-2">GitLab est déjà configuré et prêt à l'emploi.</p>
+      <img src="assets/images/gitlab-login.png" alt="Page de connexion GitLab" class="rounded shadow mt-6 border border-zinc-300" />
+    </section>
+
+    <hr />
+
+    <!-- Étape 2 -->
+    <section>
+      <h2 class="text-2xl font-bold mb-10 mt-10 text-[color:var(--ocp)]">2 · Ouvrir le projet NodeGoat</h2>
+      <p>Dans l'interface GitLab, cliquez sur le projet <strong>NodeGoat</strong>.</p>
+      <p class="text-sm text-zinc-600 mt-1">Il contient un pipeline CI/CD déjà prêt dans <code>.gitlab-ci.yml</code>.</p>
+      <img src="assets/images/gitlab-project.png" alt="Vue du projet NodeGoat dans GitLab" class="rounded shadow mt-6 border border-zinc-300" />
+    </section>
+
+    <hr />
+
+    <!-- Étape 3 -->
+    <section>
+      <h2 class="text-2xl font-bold mb-10 mt-10 text-[color:var(--ocp)]">3 · Lancer le pipeline</h2>
+      <p>Depuis la page du projet :</p>
+      <ul class="list-disc list-inside">
+        <li>Allez dans <code>CI/CD ▸ Pipelines</code></li>
+        <li>Cliquez sur <strong>Run pipeline</strong></li>
+        <li>Observez les étapes s’exécuter en direct</li>
+      </ul>
+      <img src="assets/images/pipeline-running.png" alt="Exécution d'un pipeline GitLab" class="rounded shadow mt-6 border border-zinc-300" />
+    </section>
+
+    <hr />
+
+    <!-- Étape 4 -->
+    <section>
+      <h2 class="text-2xl font-bold mb-10 mt-10 text-[color:var(--ocp)]">4 · Consulter les résultats de sécurité</h2>
+      <ul class="list-disc list-inside">
+        <li><strong>Harbor</strong> : http://localhost:8082 (résultats des scans d'images)</li>
+        <li><strong>SonarQube</strong> : http://localhost:9000 (admin / admin)</li>
+      </ul>
+      <div class="grid md:grid-cols-2 gap-6 mt-6">
+        <img src="assets/images/harbor-results.png" alt="Résultats Trivy dans Harbor" class="rounded shadow border border-zinc-300" />
+        <img src="assets/images/sonarqube-results.png" alt="Analyse SonarQube du code NodeGoat" class="rounded shadow border border-zinc-300" />
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <div class="flex justify-between flex-wrap gap-4 mt-14">
+      <a href="installation-vm.html"
+         class="px-4 py-2 rounded bg-zinc-200 text-zinc-700 hover:bg-zinc-300 transition">
+        ← Étape précédente : Importer la VM
+      </a>
+
+      <a href="pipeline-overview (1).html"
+         class="px-4 py-2 rounded text-white"
+         style="background:var(--ocp);"
+         onmouseover="this.style.background='var(--ocp-dark)'"
+         onmouseout="this.style.background='var(--ocp)'">
+        Comprendre le pipeline 
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    © <a href="https://www.linkedin.com/in/rachid-ait-lmaati-540756286/" class="underline font-semibold" target="_blank" rel="noopener">AIT LMAATI Rachid</a> 2025 — Projet DevSecOps • OCP
+  </footer>
+</body>
+</html>

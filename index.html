@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lab DevSecOps – OCP</title>
+  <link href="./output.css" rel="stylesheet" />
+
+  <!-- Couleurs personnalisées OCP -->
+  <style>
+    :root {
+      --ocp-green: #009639;
+      --ocp-green-dark: #007d2a;
+      --text-dark: #222;
+      --bg-light: #fafafa;
+      --card-shadow: rgba(0,0,0,0.06);
+    }
+
+    /* Reset de base pour police / ombres */
+    * { box-sizing: border-box; margin:0; padding:0; font-family: system-ui, sans-serif; }
+    body { background: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+
+    /* Header sobre */
+    header { padding: 2.5rem 1rem; text-align: center; }
+    header h1 { font-size: 2rem; margin-bottom: .3rem; }
+    header p.lead { opacity: .8; }
+
+    /* Cartes (style RC) */
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    .card {
+      flex: 1 1 260px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px var(--card-shadow);
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.15s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 18px rgba(0, 150, 57, 0.35);
+    }
+    .card h3{ margin-bottom:.8rem; color: var(--ocp-green); }
+
+    /* Boutons verts OCP + hover */
+    .btn-ocp{
+      display:inline-block; margin-top:1rem; padding:.55rem 1.2rem;
+      background: var(--ocp-green); color:#fff; border-radius: 0.75rem;
+      transition: background .15s ease;
+      text-decoration:none;
+    }
+    .btn-ocp:hover{ background: var(--ocp-green-dark); }
+
+    footer{ text-align:center; font-size:.85rem; padding:2rem 0; color:#666;}
+
+    /* Styles additionnels pour le contenu enrichi */
+    .feature-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+    .feature-tag {
+      background: #e8f5e8;
+      color: var(--ocp-green);
+      padding: 0.5rem 1rem;
+      border-radius: 1rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px var(--card-shadow);
+    }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--ocp-green);
+    }
+    .pipeline-flow {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 2rem 0;
+    }
+    .flow-step {
+      background: white;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px var(--card-shadow);
+      font-size: 0.9rem;
+      color: var(--ocp-green);
+      font-weight: 500;
+    }
+    .flow-arrow {
+      color: var(--ocp-green);
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Barre de navigation DevSecOps -->
+<header class="bg-white shadow-md px-6 py-4 flex justify-between items-center sticky top-0 z-50">
+  <!-- Logo + nom -->
+  <div class="flex items-center gap-3">
+    <img src="assets/images/ocp logo.png" alt="OCP Logo" class="w-20 h-16" />
+    <span class="text-xl font-bold text-[color:var(--ocp-green)]">DevSecOps Lab</span>
+  </div>
+
+  <!-- Menu principal -->
+  <nav class="hidden sm:flex gap-6 text-sm font-medium">
+    <a href="index.html" class="text-gray-700 hover:text-[color:var(--ocp-green)] transition">Accueil</a>
+    <a href="installation-vm.html" class="text-gray-700 hover:text-[color:var(--ocp-green)] transition">Quick Start</a>
+    <a href="job-build.html" class="text-gray-700 hover:text-[color:var(--ocp-green)] transition">Build</a>
+    <a href="job-scan-trivy.html" class="text-gray-700 hover:text-[color:var(--ocp-green)] transition">Trivy</a>
+    <a href="job-sonarqube.html" class="text-gray-700 hover:text-[color:var(--ocp-green)] transition">SonarQube</a>
+    <a href="pipeline.html" class="text-gray-700 hover:text-[color:var(--ocp-green)] transition">Pipeline</a>
+    <a href="perspective.html" class="text-gray-700 hover:text-[color:var(--ocp-green)] transition">Perspectives</a>
+    <a href="fin.html" class="text-gray-700 hover:text-[color:var(--ocp-green)] transition">Conclusion</a>
+  </nav>
+</header>
+
+<section class="container mx-auto px-4 py-16 text-center">
+  <!-- Hero Section -->
+  <div class="mb-12">
+    <h2 class="text-4xl font-bold mb-4">🚀 Laboratoire DevSecOps Interactif</h2>
+    <p class="mb-6 max-w-3xl mx-auto text-lg">
+      Découvrez un <strong>parcours pédagogique complet</strong> pour maîtriser les pratiques DevSecOps modernes avec des outils industriels.
+    </p>
+    
+    <!-- Tags des technologies -->
+    <div class="feature-list">
+      <span class="feature-tag">GitLab CI/CD</span>
+      <span class="feature-tag">Docker</span>
+      <span class="feature-tag">Trivy</span>
+      <span class="feature-tag">SonarQube</span>
+      <span class="feature-tag">OWASP ZAP</span>
+      <span class="feature-tag">Gitleaks</span>
+    </div>
+  </div>
+
+  <!-- Statistiques du lab -->
+ 
+
+  <!-- Flow du pipeline -->
+
+
+  <!-- Cartes principales -->
+ 
+
+  <!-- Section What you'll learn -->
+  <div class="max-w-4xl mx-auto mt-16">
+    <h3 class="text-2xl font-semibold mb-8 text-[color:var(--ocp-green)]"> Objectifs pédagogiques</h3>
+    <div class="cards">
+      <div class="card" style="text-align: left;">
+        <h4 class="font-semibold mb-3 text-[color:var(--ocp-green)]">🛠️ Maîtrise technique</h4>
+        <ul class="text-sm space-y-1">
+          <li>• Configuration GitLab CI/CD</li>
+          <li>• Conteneurisation Docker</li>
+          <li>• Scanning de vulnérabilités</li>
+          <li>• Tests de qualité automatisés</li>
+        </ul>
+      </div>
+      <div class="card" style="text-align: left;">
+        <h4 class="font-semibold mb-3 text-[color:var(--ocp-green)]">🔐 Sécurité intégrée</h4>
+        <ul class="text-sm space-y-1">
+          <li>• Détection de secrets (Gitleaks)</li>
+          <li>• Analyse statique (SonarQube)</li>
+          <li>• Tests dynamiques (OWASP ZAP)</li>
+          <li>• Gestion des dépendances</li>
+        </ul>
+      </div>
+      <div class="card" style="text-align: left;">
+        <h4 class="font-semibold mb-3 text-[color:var(--ocp-green)]">📈 Bonnes pratiques</h4>
+        <ul class="text-sm space-y-1">
+          <li>• Shift-left security</li>
+          <li>• Automatisation complète</li>
+          <li>• Feedback loops rapides</li>
+          <li>• Documentation et monitoring</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Call to action final -->
+ 
+</section>
+ <section class="container mx-auto px-4 py-16 text-center">
+  <p class="mb-6 max-w-3xl mx-auto text-lg">
+    Ce site couvre <strong>un parcours pédagogique interactif</strong> 
+  </p>
+
+  <!-- ✅ Ce conteneur limite la largeur -->
+  <div class="max-w-md mx-auto">
+    <div class="cards">
+      <a href="installation-vm.html" class="card">
+        <h3 class="text-xl font-semibold mb-2">⚡ Quick Start — VM clé en main</h3>
+        <p class="mb-4">
+          Importez l’image VirtualBox, puis lancez immédiatement le pipeline GitLab&nbsp;CI/CD préconfiguré.
+        </p>
+        <span class="btn-ocp">Commencer</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © <a href="https://www.linkedin.com/in/rachid-ait-lmaati-540756286/" class="underline font-semibold" target="_blank" rel="noopener">AIT LMAATI Rachid</a> 2025 — Projet DevSecOps • OCP
+</footer>
+</body>
+</html>
